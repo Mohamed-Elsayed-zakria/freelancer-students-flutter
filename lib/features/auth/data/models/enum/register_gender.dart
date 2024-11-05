@@ -1,0 +1,4 @@
+enum RegisterGender {
+  male,
+  female,
+}
