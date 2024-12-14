@@ -1,7 +1,6 @@
 import 'forgot_password_screen_description.dart';
 import 'forgot_password_screen_get_started.dart';
 import 'forgot_password_screen_take_email.dart';
-import 'password_forgot_screen_restore.dart';
 import 'forgot_password_screen_image.dart';
 import 'package:flutter/material.dart';
 import '/core/routes/app_pages.dart';
@@ -14,6 +13,7 @@ class ForgotPasswordScreenSteepOne extends StatelessWidget {
     return CustomScrollView(
       slivers: [
         SliverAppBar(
+          title: const Text("Forgot password"),
           leading: IconButton(
             icon: const Icon(Icons.arrow_back),
             onPressed: () {
@@ -26,9 +26,9 @@ class ForgotPasswordScreenSteepOne extends StatelessWidget {
             padding: EdgeInsets.all(8.0),
             child: Column(
               children: [
-                ForgotPasswordScreenRestore(),
-                SizedBox(height: 12),
+                SizedBox(height: 10),
                 ForgotPasswordScreenImage(),
+                SizedBox(height: 12),
                 ForgotPasswordScreenDescription(),
                 SizedBox(height: 15),
                 ForgotPasswordScreenTakeEmail(),

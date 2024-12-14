@@ -11,8 +11,7 @@ class ForgotPasswordScreenCorrectEmail extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    ForgotPasswordCubit blocAccess =
-        BlocProvider.of<ForgotPasswordCubit>(context);
+    var cubit = context.read<ForgotPasswordCubit>();
     final Size size = SizeScreen.size(context: context);
     return SizedBox(
       width: responsiveElementSize(size),
@@ -21,7 +20,7 @@ class ForgotPasswordScreenCorrectEmail extends StatelessWidget {
         children: [
           InkWell(
             onTap: () => {
-              blocAccess.controller.previousPage(
+              cubit.controller.previousPage(
                 duration: const Duration(milliseconds: 500),
                 curve: Curves.easeIn,
               ),

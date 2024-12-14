@@ -14,7 +14,7 @@ class ForgotPasswordScreenTakePassword extends StatelessWidget {
         ForgotPasswordCubit blocAccess =
             BlocProvider.of<ForgotPasswordCubit>(context);
         return AbsorbPointer(
-          absorbing: state is ForgotPasswordLoading,
+          absorbing: state is ResetPasswordLoading,
           child: Form(
             key: blocAccess.formKeyResetPassword,
             child: Column(

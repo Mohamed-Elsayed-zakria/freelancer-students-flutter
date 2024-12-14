@@ -13,23 +13,25 @@ class ForgotPasswordScreenGetStarted extends StatelessWidget {
     ForgotPasswordCubit blocAccess =
         BlocProvider.of<ForgotPasswordCubit>(context);
     return BlocConsumer<ForgotPasswordCubit, ForgotPasswordState>(
+      buildWhen: (previous, current) =>
+          current is SendVerificationCodeSuccess ||
+          current is SendVerificationCodeLoading ||
+          current is SendVerificationCodeFailure,
       listener: (context, state) {
-        if (state is ForgotPasswordSuccess) {
+        if (state is SendVerificationCodeSuccess) {
           blocAccess.controller.nextPage(
             duration: const Duration(milliseconds: 500),
             curve: Curves.easeIn,
           );
-        } else if (state is ForgotPasswordFailure) {
+        } else if (state is SendVerificationCodeFailure) {
           ShowToast.show(msg: state.errMessage);
         }
       },
       builder: (context, state) {
         return CustomButton(
-          isLoading: state is ForgotPasswordLoading,
+          isLoading: state is SendVerificationCodeLoading,
           text: 'Get started',
           onPressed: () {
-            ForgotPasswordCubit blocAccess =
-                BlocProvider.of<ForgotPasswordCubit>(context);
             if (blocAccess.formKeyGetEmail.currentState!.validate()) {
               blocAccess.sendVerificationCode(
                 email: blocAccess.getEmail.text,

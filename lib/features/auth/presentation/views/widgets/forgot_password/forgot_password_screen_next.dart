@@ -13,23 +13,25 @@ class ForgotPasswordScreenNext extends StatelessWidget {
     ForgotPasswordCubit blocAccess =
         BlocProvider.of<ForgotPasswordCubit>(context);
     return BlocConsumer<ForgotPasswordCubit, ForgotPasswordState>(
+      buildWhen: (previous, current) =>
+          current is VerifyResetCodeSuccess ||
+          current is VerifyResetCodeLoading ||
+          current is VerifyResetCodeFailure,
       listener: (context, state) {
-        if (state is ForgotPasswordSuccess) {
+        if (state is VerifyResetCodeSuccess) {
           blocAccess.controller.nextPage(
             duration: const Duration(milliseconds: 500),
             curve: Curves.easeIn,
           );
-        } else if (state is ForgotPasswordFailure) {
+        } else if (state is VerifyResetCodeFailure) {
           ShowToast.show(msg: state.errMessage);
         }
       },
       builder: (context, state) {
         return CustomButton(
-          isLoading: state is ForgotPasswordLoading,
+          isLoading: state is VerifyResetCodeLoading,
           text: 'Next',
           onPressed: () {
-            ForgotPasswordCubit blocAccess =
-                BlocProvider.of<ForgotPasswordCubit>(context);
             if (blocAccess.getPinCode.length != 6) {
               return ShowToast.show(msg: 'Pin code must be 6 digits');
             }

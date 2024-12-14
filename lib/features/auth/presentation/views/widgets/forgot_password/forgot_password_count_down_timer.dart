@@ -1,3 +1,5 @@
+import '/features/auth/presentation/manager/forgot_password_cubit/forgot_password_cubit.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter/material.dart';
 import '/core/constant/colors.dart';
 import '/core/constant/style.dart';
@@ -61,14 +63,21 @@ class _ForgotPasswordCountdownTimerState
 
   @override
   Widget build(BuildContext context) {
+    var cubit = context.read<ForgotPasswordCubit>();
     return Visibility(
       visible: !_isTimeUp,
       replacement: GestureDetector(
-        onTap: _resetTimer,
+        onTap: () {
+          cubit.reSendVerificationCode(
+            email: cubit.getEmail.text,
+          );
+          _resetTimer();
+        },
         child: Text(
           'Time is up. Click to resend',
           style: AppStyle.kTextStyle16.copyWith(
             color: AppColors.kPrimaryVariantColor,
+            decoration: TextDecoration.underline,
           ),
         ),
       ),

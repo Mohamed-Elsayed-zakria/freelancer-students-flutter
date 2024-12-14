@@ -15,7 +15,7 @@ class ForgotPasswordScreenTakeEmail extends StatelessWidget {
     return BlocBuilder<ForgotPasswordCubit, ForgotPasswordState>(
       builder: (context, state) {
         return AbsorbPointer(
-          absorbing: state is ForgotPasswordLoading,
+          absorbing: state is SendVerificationCodeLoading,
           child: Form(
             key: blocAccess.formKeyGetEmail,
             child: CustomFormField(

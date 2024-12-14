@@ -38,10 +38,6 @@ class _MainHomeScreenState extends State<MainHomeScreen> {
             label: 'Notice',
           ),
           BottomNavigationBarItem(
-            icon: Icon(IconlyBroken.video),
-            label: 'Videos',
-          ),
-          BottomNavigationBarItem(
             icon: Icon(IconlyBroken.category),
             label: 'Services',
           ),

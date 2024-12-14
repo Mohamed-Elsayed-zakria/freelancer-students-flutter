@@ -13,6 +13,7 @@ class ForgotPasswordScreenSteepThree extends StatelessWidget {
     return CustomScrollView(
       slivers: [
         SliverAppBar(
+          title: const Text("Create new password"),
           leading: IconButton(
             icon: const Icon(Icons.arrow_back),
             onPressed: () => showExitConfirmationDialog(context),

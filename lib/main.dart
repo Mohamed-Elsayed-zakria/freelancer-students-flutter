@@ -10,7 +10,13 @@ void main() async {
   SetupLocator().setup();
   DioConfig().setupDio();
   await HiveConfig.initHive();
-  runApp(const MainApp());
+  runApp(
+    const MainApp(),
+    // DevicePreview(
+    //   enabled: !kReleaseMode,
+    //   builder: (context) => const MainApp(),
+    // ),
+  );
 }
 
 class MainApp extends StatelessWidget {
@@ -20,7 +26,7 @@ class MainApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp.router(
       debugShowCheckedModeBanner: false,
-      title: 'Freelancer App',
+      title: 'Student managment',
       theme: AppStyle.appTheme(),
       routerConfig: AppPages.router,
     );

@@ -1,3 +1,4 @@
+import '/features/home/presentation/views/home_view.dart';
 import 'package:flutter/material.dart';
 
 class MainHomeScreenBody extends StatelessWidget {
@@ -13,11 +14,10 @@ class MainHomeScreenBody extends StatelessWidget {
     return IndexedStack(
       index: pageNumber,
       children: const [
-        Text("data"),
-        Text("data"),
-        Text("data"),
-        Text("data"),
-        Text("data"),
+        HomeView(),
+        Text("Notice"),
+        Text("Services"),
+        Text("Settings"),
       ],
     );
   }

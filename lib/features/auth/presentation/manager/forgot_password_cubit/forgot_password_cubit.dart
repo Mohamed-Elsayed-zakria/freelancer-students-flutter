@@ -37,13 +37,26 @@ class ForgotPasswordCubit extends Cubit<ForgotPasswordState> {
   Future<void> sendVerificationCode({
     required String email,
   }) async {
-    emit(ForgotPasswordLoading());
+    emit(SendVerificationCodeLoading());
     Either<Failures, void> result = await _forgotPassword.sendVerificationCode(
       email: email,
     );
     result.fold(
-      (failures) => emit(ForgotPasswordFailure(failures.errMessage)),
-      (result) => emit(ForgotPasswordSuccess()),
+      (failures) => emit(SendVerificationCodeFailure(failures.errMessage)),
+      (result) => emit(SendVerificationCodeSuccess()),
+    );
+  }
+
+  Future<void> reSendVerificationCode({
+    required String email,
+  }) async {
+    emit(ReSendVerificationCodeLoading());
+    Either<Failures, void> result = await _forgotPassword.sendVerificationCode(
+      email: email,
+    );
+    result.fold(
+      (failures) => emit(ReSendVerificationCodeFailure(failures.errMessage)),
+      (result) => emit(ReSendVerificationCodeSuccess()),
     );
   }
 
@@ -51,14 +64,14 @@ class ForgotPasswordCubit extends Cubit<ForgotPasswordState> {
     required String email,
     required String pinCode,
   }) async {
-    emit(ForgotPasswordLoading());
+    emit(VerifyResetCodeLoading());
     Either<Failures, void> result = await _forgotPassword.verifyResetCode(
       email: email,
       pinCode: pinCode,
     );
     result.fold(
-      (failures) => emit(ForgotPasswordFailure(failures.errMessage)),
-      (result) => emit(ForgotPasswordSuccess()),
+      (failures) => emit(VerifyResetCodeFailure(failures.errMessage)),
+      (result) => emit(VerifyResetCodeSuccess()),
     );
   }
 
@@ -67,15 +80,15 @@ class ForgotPasswordCubit extends Cubit<ForgotPasswordState> {
     required String newPassword,
     required String passwordConfirmation,
   }) async {
-    emit(ForgotPasswordLoading());
+    emit(ResetPasswordLoading());
     Either<Failures, void> result = await _forgotPassword.resetPassword(
       email: email,
       newPassword: newPassword,
       passwordConfirmation: passwordConfirmation,
     );
     result.fold(
-      (failures) => emit(ForgotPasswordFailure(failures.errMessage)),
-      (result) => emit(ForgotPasswordSuccess()),
+      (failures) => emit(ResetPasswordFailure(failures.errMessage)),
+      (result) => emit(ResetPasswordSuccess()),
     );
   }
 }

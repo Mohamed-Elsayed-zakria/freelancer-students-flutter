@@ -15,8 +15,12 @@ class ForgotPasswordScreenFinish extends StatelessWidget {
     ForgotPasswordCubit blocAccess =
         BlocProvider.of<ForgotPasswordCubit>(context);
     return BlocConsumer<ForgotPasswordCubit, ForgotPasswordState>(
+      buildWhen: (previous, current) =>
+          current is ResetPasswordSuccess ||
+          current is ResetPasswordLoading ||
+          current is ResetPasswordFailure,
       listener: (context, state) {
-        if (state is ForgotPasswordSuccess) {
+        if (state is ResetPasswordSuccess) {
           AppPages.offAll(
             path: AppRoutes.login,
             context: context,
@@ -24,16 +28,15 @@ class ForgotPasswordScreenFinish extends StatelessWidget {
           blocAccess.getEmail.clear();
           blocAccess.getPassword.clear();
           blocAccess.getRetypePassword.clear();
-        } else if (state is ForgotPasswordFailure) {
+        } else if (state is ResetPasswordFailure) {
           ShowToast.show(msg: state.errMessage);
         }
       },
       builder: (context, state) {
         return CustomButton(
+          isLoading: state is ResetPasswordLoading,
           text: 'Finish',
           onPressed: () {
-            ForgotPasswordCubit blocAccess =
-                BlocProvider.of<ForgotPasswordCubit>(context);
             if (blocAccess.formKeyResetPassword.currentState!.validate()) {
               blocAccess.resetPassword(
                 email: blocAccess.getEmail.text,
