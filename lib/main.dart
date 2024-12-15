@@ -1,3 +1,6 @@
+import 'features/home/presentation/manager/home_get_posts_cubit/home_get_posts_cubit.dart';
+import 'features/home/data/repository/implement/home_implement.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'core/services/service_locator.dart';
 import 'package:flutter/material.dart';
 import 'core/config/hive_config.dart';
@@ -10,13 +13,7 @@ void main() async {
   SetupLocator().setup();
   DioConfig().setupDio();
   await HiveConfig.initHive();
-  runApp(
-    const MainApp(),
-    // DevicePreview(
-    //   enabled: !kReleaseMode,
-    //   builder: (context) => const MainApp(),
-    // ),
-  );
+  runApp(const MainApp());
 }
 
 class MainApp extends StatelessWidget {
@@ -24,11 +21,18 @@ class MainApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return MaterialApp.router(
-      debugShowCheckedModeBanner: false,
-      title: 'Student managment',
-      theme: AppStyle.appTheme(),
-      routerConfig: AppPages.router,
+    return MultiBlocProvider(
+      providers: [
+        BlocProvider(
+          create: (context) => HomeGetPostsCubit(HomeImplement()),
+        ),
+      ],
+      child: MaterialApp.router(
+        debugShowCheckedModeBanner: false,
+        title: 'Freelancer',
+        theme: AppStyle.appTheme(),
+        routerConfig: AppPages.router,
+      ),
     );
   }
 }

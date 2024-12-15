@@ -2,6 +2,7 @@ import '/features/auth/presentation/views/add_personal_picture_screen.dart';
 import '/features/auth/presentation/views/forgot_password_screen.dart';
 import '/features/main_home/presentation/views/main_home_screen.dart';
 import '/features/auth/presentation/views/register_screen.dart';
+import '/features/posts/presentation/views/add_post_view.dart';
 import '/features/auth/presentation/views/login_screen.dart';
 import 'package:go_router/go_router.dart';
 import '/core/routes/app_routes.dart';
@@ -35,6 +36,10 @@ class AppPages {
       GoRoute(
         path: AppRoutes.addPersonalPicture,
         builder: (context, state) => const AddPersonalPictureScreen(),
+      ),
+      GoRoute(
+        path: AppRoutes.addPostView,
+        builder: (context, state) => const AddPostView(),
       ),
     ],
   );
