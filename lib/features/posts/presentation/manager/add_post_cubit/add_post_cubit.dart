@@ -5,7 +5,6 @@ import 'package:flutter/material.dart';
 import '/core/errors/failures.dart';
 import 'package:dartz/dartz.dart';
 import 'add_post_state.dart';
-import 'dart:io';
 
 class AddPostCubit extends Cubit<AddPostState> {
   AddPostCubit(this._addPostRepo) : super(AddPostInitial());
@@ -17,8 +16,6 @@ class AddPostCubit extends Cubit<AddPostState> {
   final GlobalKey<FormState> addPostFormKey = GlobalKey();
 
   final TextEditingController getDescriptionText = TextEditingController();
-
-  File? addPostVideoPath;
 
   List<String> listItem = ["Public", "Private"];
   String selectItem = "Public";
@@ -53,7 +50,6 @@ class AddPostCubit extends Cubit<AddPostState> {
       (result) {
         getDescriptionText.clear();
         imagePaths.clear();
-        addPostVideoPath = null;
         emit(AddPostSuccess());
       },
     );

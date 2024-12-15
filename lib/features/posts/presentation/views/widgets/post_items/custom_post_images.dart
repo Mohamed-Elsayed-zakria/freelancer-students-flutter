@@ -31,12 +31,10 @@ class _PostCustomImagesState extends State<PostCustomImages> {
         .addListener(
       ImageStreamListener(
         (ImageInfo info, bool _) {
-          setState(() {
-            imageSizes[imageUrl] = Size(
-              info.image.width.toDouble(),
-              info.image.height.toDouble(),
-            );
-          });
+          imageSizes[imageUrl] = Size(
+            info.image.width.toDouble(),
+            info.image.height.toDouble(),
+          );
         },
       ),
     );

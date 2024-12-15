@@ -16,7 +16,7 @@ class CustomPostMoreOtherUser extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      height: 185,
+      height: 133,
       decoration: const BoxDecoration(
         color: AppColors.kSurfaceColor,
         borderRadius: BorderRadius.only(

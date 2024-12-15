@@ -3,14 +3,12 @@ import 'package:dio/dio.dart';
 
 class AddPostModel {
   final String description;
-  final String? videoUrl;
   final List<String> imagesUrl;
   final String personUid;
   final String postStatus;
 
   AddPostModel({
     required this.description,
-    required this.videoUrl,
     required this.imagesUrl,
     required this.personUid,
     required this.postStatus,
@@ -26,10 +24,7 @@ class AddPostModel {
     return FormData.fromMap({
       "description": description,
       "postStatus": postStatus,
-      "postImages": images,
-      if (videoUrl != null)
-        "postVideo":
-            MultipartFile.fromFileSync(videoUrl!, filename: "$generatId.mp4"),
+      "imagesUrl": images,
     });
   }
 }

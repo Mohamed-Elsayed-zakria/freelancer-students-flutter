@@ -30,8 +30,7 @@ class AddPostViewButtomShare extends StatelessWidget {
           onPressed: state is AddPostLoading
               ? null
               : () {
-                  if (blocAccess.addPostVideoPath == null &&
-                      blocAccess.imagePaths.isEmpty) {
+                  if (blocAccess.imagePaths.isEmpty) {
                     if (blocAccess.addPostFormKey.currentState!.validate()) {
                       _addNewPost(blocAccess, userId);
                     }
@@ -52,7 +51,6 @@ class AddPostViewButtomShare extends StatelessWidget {
     return blocAccess.createNewPost(
       postDataModel: AddPostModel(
         description: blocAccess.getDescriptionText.text,
-        videoUrl: blocAccess.addPostVideoPath?.path,
         imagesUrl: blocAccess.imagePaths,
         personUid: userId!,
         postStatus: blocAccess.selectItem,
