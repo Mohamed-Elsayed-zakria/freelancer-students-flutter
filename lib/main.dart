@@ -1,7 +1,9 @@
 import 'features/home/presentation/manager/home_get_posts_cubit/home_get_posts_cubit.dart';
 import 'features/home/data/repository/implement/home_implement.dart';
+import 'package:device_preview/device_preview.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'core/services/service_locator.dart';
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'core/config/hive_config.dart';
 import 'core/config/dio_config.dart';
@@ -13,7 +15,12 @@ void main() async {
   SetupLocator().setup();
   DioConfig().setupDio();
   await HiveConfig.initHive();
-  runApp(const MainApp());
+  runApp(
+    DevicePreview(
+      enabled: !kReleaseMode,
+      builder: (context) => const MainApp(),
+    ),
+  );
 }
 
 class MainApp extends StatelessWidget {

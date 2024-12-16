@@ -58,6 +58,7 @@ dependencies:
   cached_network_image: ^3.4.1
   readmore: ^3.0.0
   carousel_slider: ^5.0.0
+  barcode_widget: ^2.0.4
 
 dev_dependencies:
   hive_generator: ^2.0.1
