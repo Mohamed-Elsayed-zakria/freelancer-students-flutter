@@ -1,4 +1,3 @@
-import 'register_screen_info_personal_data.dart';
 import '/core/widgets/show_up_animation.dart';
 import 'register_screen_create_account.dart';
 import 'register_screen_take_gender.dart';
@@ -48,11 +47,11 @@ class RegisterScreenBody extends StatelessWidget {
             ),
             child: const Column(
               children: [
-                RegisterScreenInfoPersonalData(),
-                RegisterScreenSignIn(),
+                SizedBox(height: 4),
                 RegisterScreenTakeData(),
                 RegisterScreenTakeAge(),
                 RegisterScreenTakeGender(),
+                RegisterScreenSignIn(),
                 RegisterCreateAccount(),
               ],
             ),
