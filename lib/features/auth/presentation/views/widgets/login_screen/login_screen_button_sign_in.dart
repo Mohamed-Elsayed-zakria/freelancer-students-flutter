@@ -25,16 +25,16 @@ class LoginScreenButtonSignIn extends StatelessWidget {
         }
       },
       builder: (context, state) {
-        LoginCubit blocAccess = BlocProvider.of<LoginCubit>(context);
+        var cubit = context.read<LoginCubit>();
         return CustomButton(
           isLoading: state is LoginLoading,
           text: 'sign in',
           onPressed: () {
-            if (blocAccess.formKeyLogin.currentState!.validate()) {
-              blocAccess.login(
+            if (cubit.formKeyLogin.currentState!.validate()) {
+              cubit.login(
                 loginModel: LoginModel(
-                  email: blocAccess.getEmail.text,
-                  password: blocAccess.getPassword.text,
+                  email: cubit.getEmail.text,
+                  password: cubit.getPassword.text,
                 ),
               );
             }

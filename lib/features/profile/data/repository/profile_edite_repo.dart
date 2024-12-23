@@ -6,11 +6,11 @@ import 'dart:io';
 abstract class ProfileEditeRepo extends BaseServices {
   Future<Either<Failures, File>> chooseImagePictureFromGalary();
   Future<Either<Failures, File>> chooseImageCoverFromGalary();
-  Future<Either<Failures, void>> uploadImagePicture({
+  Future<Either<Failures, String>> uploadImagePicture({
     required String imgPath,
     required String userId,
   });
-  Future<Either<Failures, void>> uploadImageCover({
+  Future<Either<Failures, String>> uploadImageCover({
     required String imgPath,
     required String userId,
   });

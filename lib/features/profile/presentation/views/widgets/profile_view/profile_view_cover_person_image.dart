@@ -1,5 +1,6 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import '/features/profile/data/models/profile_model.dart';
+import '/core/constant/default_personal_images.dart';
 import '/core/constant/api_end_point.dart';
 import 'package:flutter/material.dart';
 import '/core/constant/colors.dart';
@@ -18,7 +19,9 @@ class ProfileViewCoverAndPersonImage extends StatelessWidget {
       child: Stack(
         children: [
           CachedNetworkImage(
-            imageUrl: '${APIEndPoint.mediaBaseUrl}${userData.coverPhoto}',
+            imageUrl: userData.coverPhoto == null
+                ? '${APIEndPoint.mediaBaseUrl}${DefaultPersonalImage.urlCoverPhoto}'
+                : '${APIEndPoint.mediaBaseUrl}${userData.coverPhoto}',
             fit: BoxFit.cover,
             height: 190,
             width: double.infinity,

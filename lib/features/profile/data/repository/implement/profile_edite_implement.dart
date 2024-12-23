@@ -75,7 +75,7 @@ class ProfileEditeImplement extends ProfileEditeRepo {
   }
 
   @override
-  Future<Either<Failures, void>> uploadImagePicture({
+  Future<Either<Failures, String>> uploadImagePicture({
     required String imgPath,
     required String userId,
   }) async {
@@ -97,7 +97,7 @@ class ProfileEditeImplement extends ProfileEditeRepo {
       final userData = AuthServices.readCredentials();
       userData!.personalPicture = jsonData['data']['personalPicture'];
       AuthServices.storeCredentials(userData);
-      return right(null);
+      return right(jsonData['data']['personalPicture']);
     } catch (e) {
       if (e is DioException) {
         return left(
@@ -111,7 +111,7 @@ class ProfileEditeImplement extends ProfileEditeRepo {
   }
 
   @override
-  Future<Either<Failures, void>> uploadImageCover({
+  Future<Either<Failures, String>> uploadImageCover({
     required String imgPath,
     required String userId,
   }) async {
@@ -125,11 +125,12 @@ class ProfileEditeImplement extends ProfileEditeRepo {
           filename: "$generatPersonalImageId.jpg",
         ),
       });
-      await dio.put(
+      var respose = await dio.put(
         url,
         data: formData,
       );
-      return right(null);
+      var data = respose.data as Map<String, dynamic>;
+      return right(data['data']['coverPhoto']);
     } catch (e) {
       if (e is DioException) {
         return left(

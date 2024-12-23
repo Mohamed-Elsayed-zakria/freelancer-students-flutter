@@ -13,20 +13,26 @@ class HomeView extends StatefulWidget {
 }
 
 class _HomeViewState extends State<HomeView> {
+  String? userId;
+
   @override
   void initState() {
-    String? userId = AuthServices.currentUserId();
+    userId = AuthServices.currentUserId();
     if (userId != null) {
-      context.read<HomeGetPostsCubit>().fetchAllPosts(userId: userId);
+      context.read<HomeGetPostsCubit>().fetchAllPosts(userId: userId!);
     }
     super.initState();
   }
 
   @override
   Widget build(BuildContext context) {
-    return const Scaffold(
+    return Scaffold(
       backgroundColor: AppColors.kBackgroundColor,
-      body: HomeScreenBody(),
+      body: RefreshIndicator(
+        onRefresh: () =>
+            context.read<HomeGetPostsCubit>().fetchAllPosts(userId: userId!),
+        child: const HomeScreenBody(),
+      ),
     );
   }
 }

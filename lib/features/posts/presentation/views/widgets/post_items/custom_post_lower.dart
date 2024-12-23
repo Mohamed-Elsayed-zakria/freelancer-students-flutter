@@ -1,3 +1,6 @@
+import 'package:freelancer/core/routes/app_pages.dart';
+import 'package:freelancer/core/routes/app_routes.dart';
+
 import '/features/posts/data/model/post_model/post_model.dart';
 import 'package:flutter_iconly/flutter_iconly.dart';
 import 'package:flutter/material.dart';
@@ -18,7 +21,10 @@ class CustomPostLower extends StatelessWidget {
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
             TextButton(
-              onPressed: () {},
+              onPressed: () => AppPages.to(
+                path: AppRoutes.applyForJobsView,
+                context: context,
+              ),
               child: const Text("Apply for job"),
             ),
             Container(

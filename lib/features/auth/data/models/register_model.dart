@@ -1,3 +1,7 @@
+import 'package:freelancer/core/constant/default_personal_images.dart';
+
+import 'enum/register_gender.dart';
+
 class RegisterModel {
   final String username;
   final String fullName;
@@ -25,7 +29,11 @@ class RegisterModel {
       'password': password,
       'passwordConfirmation': confirmPassword,
       'gender': gender,
-      'age': age
+      'age': age,
+      'personalPicture': gender == RegisterGender.male.name
+          ? DefaultPersonalImage.urlPhotoMale
+          : DefaultPersonalImage.urlPhotoFemale,
+      'coverPhoto': DefaultPersonalImage.urlCoverPhoto,
     };
   }
 }

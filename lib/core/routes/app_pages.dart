@@ -2,6 +2,7 @@ import '/features/auth/presentation/views/add_personal_picture_screen.dart';
 import '/features/auth/presentation/views/forgot_password_screen.dart';
 import '/features/profile/presentation/views/profile_edite_view.dart';
 import '/features/main_home/presentation/views/main_home_screen.dart';
+import '/features/posts/presentation/views/apply_for_jobs_view.dart';
 import '/features/profile/presentation/views/profile_qr_view.dart';
 import '/features/auth/presentation/views/register_screen.dart';
 import '/features/profile/presentation/views/profile_view.dart';
@@ -61,6 +62,10 @@ class AppPages {
         builder: (context, state) => ProfileEditeView(
           userData: state.extra as ProfileModel,
         ),
+      ),
+      GoRoute(
+        path: AppRoutes.applyForJobsView,
+        builder: (context, state) => const ApplyForJobsView(),
       ),
     ],
   );

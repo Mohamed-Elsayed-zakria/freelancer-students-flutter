@@ -10,7 +10,7 @@ class ServicesCustomExploreFrinds extends StatelessWidget {
       margin: const EdgeInsets.symmetric(vertical: 5),
       child: ListTile(
         onTap: () {},
-        title: const Text('Explore frinds'),
+        title: const Text('Explore jobs'),
         leading: ClipOval(
           child: Container(
             color: const Color.fromARGB(189, 246, 202, 255),

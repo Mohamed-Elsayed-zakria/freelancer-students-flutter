@@ -1,6 +1,5 @@
 import 'package:flutter_iconly/flutter_iconly.dart';
 import 'services_custom_explore_frinds.dart';
-import 'services_custom_people_nearby.dart';
 import 'services_custom_saved_items.dart';
 import 'services_custom_followers.dart';
 import 'services_custom_following.dart';
@@ -35,7 +34,7 @@ class ServicesScreenBody extends StatelessWidget {
         ),
         SliverList.list(
           children: const [
-            ServicesCustomPeopleNearby(),
+            // ServicesCustomPeopleNearby(),
             ServicesCustomExploreFrinds(),
             ServicesCustomSavedItems(),
             ServicesCustomFollowers(),

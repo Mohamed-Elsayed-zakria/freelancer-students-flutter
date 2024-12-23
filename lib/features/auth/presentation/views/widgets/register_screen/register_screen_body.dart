@@ -47,7 +47,7 @@ class RegisterScreenBody extends StatelessWidget {
             ),
             child: const Column(
               children: [
-                SizedBox(height: 4),
+                SizedBox(height: 10),
                 RegisterScreenTakeData(),
                 RegisterScreenTakeAge(),
                 RegisterScreenTakeGender(),

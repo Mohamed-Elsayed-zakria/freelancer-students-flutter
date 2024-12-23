@@ -81,6 +81,7 @@ class ProfileEditePersonalPicture extends StatelessWidget {
                       onPressed: () => blocAccess.uploadImagePicture(
                         imgPath: blocAccess.updateImgPathPicture!.path,
                         userId: userData.personalUid,
+                        userData: userData,
                       ),
                     ),
                   ),

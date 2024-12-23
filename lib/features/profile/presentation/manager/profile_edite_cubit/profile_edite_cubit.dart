@@ -1,4 +1,5 @@
 import '/features/profile/data/repository/profile_edite_repo.dart';
+import '/features/profile/data/models/profile_model.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter/widgets.dart';
 import '/core/errors/failures.dart';
@@ -44,15 +45,17 @@ class ProfileEditeCubit extends Cubit<ProfileEditeState> {
   Future<void> uploadImagePicture({
     required String imgPath,
     required String userId,
+    required ProfileModel userData,
   }) async {
     emit(ProfileEditeLoading());
-    Either<Failures, void> result = await _profileEditeRepo.uploadImagePicture(
+    Either<Failures, String> result = await _profileEditeRepo.uploadImagePicture(
       imgPath: imgPath,
       userId: userId,
     );
     result.fold(
       (failures) => emit(ProfileEditeFealure(failures.errMessage)),
       (result) {
+        userData.personalPicture = result;
         updateImgPathPicture = null;
         emit(ProfileEditeSuccess());
       },
@@ -62,15 +65,17 @@ class ProfileEditeCubit extends Cubit<ProfileEditeState> {
   Future<void> uploadImageCover({
     required String imgPath,
     required String userId,
+    required ProfileModel userData,
   }) async {
     emit(ProfileEditeLoading());
-    Either<Failures, void> result = await _profileEditeRepo.uploadImageCover(
+    Either<Failures, String> result = await _profileEditeRepo.uploadImageCover(
       imgPath: imgPath,
       userId: userId,
     );
     result.fold(
       (failures) => emit(ProfileEditeFealure(failures.errMessage)),
       (result) {
+        userData.coverPhoto = result;
         updateImgPathCover = null;
         emit(ProfileEditeSuccess());
       },

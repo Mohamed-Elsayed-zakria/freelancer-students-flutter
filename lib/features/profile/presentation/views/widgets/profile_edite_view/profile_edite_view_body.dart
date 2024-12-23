@@ -32,7 +32,7 @@ class ProfileEditeViewBody extends StatelessWidget {
                   userData: userData,
                 ),
                 ProfileEditeElbio(
-                 userData: userData,
+                  userData: userData,
                 ),
               ],
             ),

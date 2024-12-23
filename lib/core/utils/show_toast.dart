@@ -1,11 +1,14 @@
-import 'package:fluttertoast/fluttertoast.dart';
+import 'package:toastification/toastification.dart';
+import 'package:flutter/material.dart';
 
 abstract class ShowToast {
-  static Future<bool?> show({required String msg}) {
-    return Fluttertoast.showToast(
-      msg: msg,
-      toastLength: Toast.LENGTH_SHORT,
-      gravity: ToastGravity.BOTTOM,
+  static void show({required String msg}) {
+    toastification.show(
+      title: Text(msg),
+      autoCloseDuration: const Duration(seconds: 3),
+      alignment: Alignment.bottomCenter,
+      showProgressBar: false,
+      showIcon: false,
     );
   }
 }

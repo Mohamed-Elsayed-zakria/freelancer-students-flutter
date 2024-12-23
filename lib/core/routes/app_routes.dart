@@ -18,5 +18,5 @@ class AppRoutes {
   static const String verification = '/verification';
   static const String changePassword = '/changePassword';
   static const String deleteAccount = '/deleteAccount';
-  
+  static const String applyForJobsView = '/applyForJobsView';
 }

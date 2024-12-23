@@ -86,6 +86,7 @@ class ServerFailures extends Failures {
     }
   }
 }
+
 class PickImageFailures extends Failures {
   PickImageFailures({required super.errMessage});
   factory PickImageFailures.errorType(String? errorType) {

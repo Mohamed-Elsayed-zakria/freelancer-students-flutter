@@ -1,6 +1,7 @@
 import 'features/home/presentation/manager/home_get_posts_cubit/home_get_posts_cubit.dart';
 import 'features/home/data/repository/implement/home_implement.dart';
 import 'package:device_preview/device_preview.dart';
+import 'package:toastification/toastification.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'core/services/service_locator.dart';
 import 'package:flutter/foundation.dart';
@@ -16,10 +17,11 @@ void main() async {
   DioConfig().setupDio();
   await HiveConfig.initHive();
   runApp(
-    DevicePreview(
-      enabled: !kReleaseMode,
-      builder: (context) => const MainApp(),
-    ),
+    const MainApp(),
+    // DevicePreview(
+    //   enabled: !kReleaseMode,
+    //   builder: (context) => const MainApp(),
+    // ),
   );
 }
 
@@ -34,11 +36,13 @@ class MainApp extends StatelessWidget {
           create: (context) => HomeGetPostsCubit(HomeImplement()),
         ),
       ],
-      child: MaterialApp.router(
-        debugShowCheckedModeBanner: false,
-        title: 'Freelancer',
-        theme: AppStyle.appTheme(),
-        routerConfig: AppPages.router,
+      child: ToastificationWrapper(
+        child: MaterialApp.router(
+          debugShowCheckedModeBanner: false,
+          title: 'Freelancer',
+          theme: AppStyle.appTheme(),
+          routerConfig: AppPages.router,
+        ),
       ),
     );
   }

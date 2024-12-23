@@ -2,6 +2,7 @@ import '/features/profile/presentation/manager/profile_edite_cubit/profile_edite
 import '/features/profile/presentation/manager/profile_edite_cubit/profile_edite_state.dart';
 import 'package:cached_network_image/cached_network_image.dart';
 import '/features/profile/data/models/profile_model.dart';
+import '/core/constant/default_personal_images.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import '/core/constant/api_end_point.dart';
 import '/core/widgets/custom_buttom.dart';
@@ -29,14 +30,14 @@ class ProfileEditeCoverPhoto extends StatelessWidget {
         }
       },
       builder: (context, state) {
-        ProfileEditeCubit blocAccess = context.read<ProfileEditeCubit>();
+        var cubit = context.read<ProfileEditeCubit>();
         return Column(
           children: [
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
                 ProfileCustomButtomEdite(
-                  onPressed: () => blocAccess.chooseImageCoverFromGalary(),
+                  onPressed: () => cubit.chooseImageCoverFromGalary(),
                 ),
                 Container(
                   margin: const EdgeInsets.symmetric(horizontal: 8),
@@ -50,7 +51,7 @@ class ProfileEditeCoverPhoto extends StatelessWidget {
             const SizedBox(height: 10),
             Column(
               children: [
-                blocAccess.updateImgPathCover == null
+                cubit.updateImgPathCover == null
                     ? Container(
                         height: size.height * 0.20,
                         width: double.infinity,
@@ -58,7 +59,9 @@ class ProfileEditeCoverPhoto extends StatelessWidget {
                           borderRadius: BorderRadius.circular(8),
                           image: DecorationImage(
                             image: CachedNetworkImageProvider(
-                              '${APIEndPoint.mediaBaseUrl}${userData.coverPhoto}',
+                              userData.coverPhoto == null
+                                  ? '${APIEndPoint.mediaBaseUrl}${DefaultPersonalImage.urlCoverPhoto}'
+                                  : '${APIEndPoint.mediaBaseUrl}${userData.coverPhoto}',
                             ),
                             fit: BoxFit.cover,
                           ),
@@ -70,21 +73,22 @@ class ProfileEditeCoverPhoto extends StatelessWidget {
                           height: size.height * 0.20,
                           width: double.infinity,
                           child: Image.file(
-                            blocAccess.updateImgPathCover!,
+                            cubit.updateImgPathCover!,
                             fit: BoxFit.cover,
                           ),
                         ),
                       ),
                 const SizedBox(height: 10),
                 Visibility(
-                  visible: blocAccess.updateImgPathCover != null,
+                  visible: cubit.updateImgPathCover != null,
                   child: AbsorbPointer(
                     absorbing: state is ProfileEditeLoading,
                     child: CustomButton(
                       text: 'Edite',
-                      onPressed: () => blocAccess.uploadImageCover(
-                        imgPath: blocAccess.updateImgPathCover!.path,
+                      onPressed: () => cubit.uploadImageCover(
+                        imgPath: cubit.updateImgPathCover!.path,
                         userId: userData.personalUid,
+                        userData: userData,
                       ),
                     ),
                   ),
